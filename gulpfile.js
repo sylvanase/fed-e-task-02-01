@@ -186,7 +186,17 @@ const prodMode = () => {
 
 const start = series(build, prodMode);
 // TODO: 待完成
-const deploy = series(build);
+const uploadDist = () => {
+  return src("**", { base: "dist" })
+    .pipe(plugins.plumber())
+    .pipe(
+      plugins.ghPages({
+        cacheDir: `temp/publish`,
+        branch: argv.branch === undefined ? "gh-pages" : argv.branch
+      })
+    );
+};
+const deploy = series(build, uploadDist);
 // 暴露出去的命令
 module.exports = {
   lint,
