@@ -1,4 +1,3 @@
-// 实现这个项目的构建任务
 const { src, dest, parallel, series, watch } = require("gulp");
 
 const del = require("del");
@@ -10,11 +9,11 @@ const bs = browserSync.create();
 const loadPlugins = require("gulp-load-plugins");
 const plugins = loadPlugins();
 
-// 判定当前执行环境
-const env = process.env.NODE_ENV;
 // 解析node.js 命令行工具
 const argv = require("minimist")(process.argv.slice(2));
 
+// 判定当前执行环境
+const env = process.env.NODE_ENV;
 const isProd = env
   ? env === "production"
   : argv.production || argv.prod || false;
@@ -61,7 +60,6 @@ const data = {
   menus: [
     {
       name: "Home",
-      icon: "aperture",
       link: "index.html"
     },
     {
@@ -84,7 +82,7 @@ const data = {
           name: "divider"
         },
         {
-          name: "About",
+          name: "Github",
           link: "https://github.com/sylvanase"
         }
       ]
@@ -192,7 +190,6 @@ const uploadDist = () => {
     .pipe(plugins.plumber())
     .pipe(
       plugins.ghPages({
-        cacheDir: `temp/publish`,
         branch: argv.branch === undefined ? "gh-pages" : argv.branch
       })
     );
