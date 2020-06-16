@@ -183,8 +183,6 @@ const prodMode = () => {
 };
 
 const start = series(build, prodMode);
-// TODO: 待完成
-const cwd = process.cwd();
 const uploadDist = () => {
   return src("**", { cwd: "dist" })
     .pipe(plugins.plumber())
