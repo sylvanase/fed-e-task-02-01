@@ -45,8 +45,7 @@ module.exports = grunt => {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     clean: {
-      dist: 'dist/**',
-      dist: 'dist/**'
+      dist: ['dist/**','temp/**']
     },
     eslint: {
       target: ['src/assets/scripts/*.js']
@@ -148,7 +147,7 @@ module.exports = grunt => {
     }
   })
 
-  grunt.registerTask('lint', ['scsslint', 'eslint'])
+  grunt.registerTask('lint', ['eslint', 'scsslint'])
   grunt.registerTask('compile', ['sass', 'babel'])
   grunt.registerTask('build', ['clean','compile', 'useref', 'cssmin', 'uglify', 'htmlmin', 'imagemin'])
 }
