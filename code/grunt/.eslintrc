@@ -1,0 +1,8 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "camelcase": 1,
+    "comma-dangle": 2,
+    "quotes": 0
+  }
+}
